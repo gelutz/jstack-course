@@ -2,6 +2,7 @@ import React from "react";
 import { Route, BrowserRouter, Routes, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Posts from "./pages/Posts";
 
 export default function Router() {
   const location = useLocation();
@@ -13,10 +14,11 @@ export default function Router() {
   //   leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
   // });
   return (
-    <BrowserRouter>
+    <>
       <Routes>
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
+        <Route path="/posts" component={Posts} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
