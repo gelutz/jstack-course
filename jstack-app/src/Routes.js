@@ -1,8 +1,9 @@
 import { Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
+import NotFound from "./pages/404";
+import Post from "./pages/Posts/Post";
 import Posts from "./pages/Posts";
-import React from "react";
 
 export default function Router() {
   const location = useLocation();
@@ -17,7 +18,10 @@ export default function Router() {
     <>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/posts" component={Posts} />
+        <Route exact path="/posts" component={Posts} />
+        <Route path="/posts/:id" component={Post} />
+
+        <Route component={NotFound} />
       </Switch>
     </>
   );
