@@ -10,6 +10,7 @@ module.exports = {
     filename: "bundle[hash].js",
     publicPath: "/",
     hashFunction: "xxhash64",
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
