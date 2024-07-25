@@ -1,8 +1,8 @@
-import React from "react";
-import { Route, BrowserRouter, Routes, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Posts from "./pages/Posts";
+import React from "react";
 
 export default function Router() {
   const location = useLocation();
@@ -15,10 +15,10 @@ export default function Router() {
   // });
   return (
     <>
-      <Routes>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/posts" component={Posts} />
-      </Routes>
+      </Switch>
     </>
   );
 }
