@@ -1,17 +1,18 @@
-const path = require('path');
-const HtmlWebpackPlugin =  require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  mode: "development",
+  entry: path.resolve(__dirname, "src", "index.js"),
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle[hash].js',
-  }, 
+    path: path.resolve(__dirname, "build"),
+    filename: "bundle[hash].js",
+    publicPath: "/",
+  },
   plugins: [
-    new HtmlWebpackPlugin ({
-      template: path.resolve(__dirname, 'public', 'index.html'),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "public", "index.html"),
     }),
     new CleanWebpackPlugin(),
   ],
@@ -20,25 +21,24 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: "babel-loader",
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader', 
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               modules: true,
             },
           },
-          'sass-loader',
+          "sass-loader",
         ],
       },
     ],
-    
   },
   devServer: {
     port: 3000,
-  }
+  },
 };
