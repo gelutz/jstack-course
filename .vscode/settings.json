@@ -1,3 +1,4 @@
 {
-  "indentRainbow.ignoreErrorLanguages": ["javascript"]
+  "indentRainbow.ignoreErrorLanguages": ["javascript"],
+  "debug.inlineValues": "on"
 }
