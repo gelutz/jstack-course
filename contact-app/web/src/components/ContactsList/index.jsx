@@ -2,6 +2,8 @@ import { Card, Container, Header, ListContainer } from "./styles";
 
 import React from "react";
 import arrow from "../../assets/images/arrow.svg";
+import edit from "../../assets/images/edit.svg";
+import trash from "../../assets/images/trash.svg";
 
 export default function ContactsList() {
   return (
@@ -20,10 +22,62 @@ export default function ContactsList() {
         </header>
 
         <Card>
-          <div className="info"></div>
+          <div className="info">
+            <div className="contact-name">
+              <strong>Gabriel Lutz</strong>
+              <small>Instagram</small>
+            </div>
+            <span>gabriel.lutz@gmail.com</span>
+            <span>+55 (11) 99999-9999</span>
+          </div>
+
+          <div className="actions">
+            <a href="/">
+              <img src={edit} alt="edit" />
+            </a>
+            <button type="button">
+              <img src={trash} alt="trash" />
+            </button>
+          </div>
         </Card>
-        <Card></Card>
-        <Card></Card>
+        <Card>
+          <div className="info">
+            <div className="contact-name">
+              <strong>Gabriel Lutz</strong>
+              <small>Instagram</small>
+            </div>
+            <span>gabriel.lutz@gmail.com</span>
+            <span>+55 (11) 99999-9999</span>
+          </div>
+
+          <div className="actions">
+            <a href="/">
+              <img src={edit} alt="edit" />
+            </a>
+            <button type="button">
+              <img src={trash} alt="trash" />
+            </button>
+          </div>
+        </Card>
+        <Card>
+          <div className="info">
+            <div className="contact-name">
+              <strong>Gabriel Lutz</strong>
+              <small>Instagram</small>
+            </div>
+            <span>gabriel.lutz@gmail.com</span>
+            <span>+55 (11) 99999-9999</span>
+          </div>
+
+          <div className="actions">
+            <a href="/">
+              <img src={edit} alt="edit" />
+            </a>
+            <button type="button">
+              <img src={trash} alt="trash" />
+            </button>
+          </div>
+        </Card>
       </ListContainer>
     </Container>
   );

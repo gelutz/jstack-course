@@ -11,7 +11,6 @@ export const Header = styled.header`
   margin-bottom: 32px;
 
   strong {
-    color: #222;
     font-size: 24px;
   }
 
@@ -42,6 +41,7 @@ export const ListContainer = styled.div`
       border: none;
       display: flex;
       align-items: center;
+      margin-bottom: 8px;
     }
 
     span {
@@ -53,7 +53,6 @@ export const ListContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  margin-bottom: 8px;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
   padding: 16px;
@@ -62,4 +61,42 @@ export const Card = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  & + & {
+    margin-top: 16px;
+  }
+
+  .info {
+    .contact-name {
+      display: flex;
+      align-items: center;
+
+      small {
+        background: ${({ theme }) => theme.colors.primary.lighter};
+        color: ${({ theme }) => theme.colors.primary.main};
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 4px;
+        border-radius: 4px;
+        margin-left: 8px;
+      }
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+      color: ${({ theme }) => theme.colors.gray[200]};
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+
+    button {
+      background: transparent;
+      border: none;
+      margin-left: 8px;
+    }
+  }
 `;
