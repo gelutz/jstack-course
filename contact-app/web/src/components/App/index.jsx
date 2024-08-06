@@ -1,7 +1,7 @@
-import ContactsList from "../ContactsList";
 import { Container } from "./styles";
 import { GlobalStyles } from "../../assets/styles/GlobalStyle";
 import { Header } from "../Header";
+import Routes from "../../routes";
 import { ThemeProvider } from "styled-components";
 import defaultTheme from "../../assets/styles/themes/default";
 
@@ -12,7 +12,7 @@ function App() {
         <GlobalStyles />
         <Container>
           <Header />
-          <ContactsList />
+          <Routes />
         </Container>
       </ThemeProvider>
     </>
