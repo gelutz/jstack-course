@@ -1,9 +1,9 @@
 import { Card, Container, Header, ListContainer } from "./styles";
 
 import React from "react";
-import arrow from "../../assets/images/arrow.svg";
-import edit from "../../assets/images/edit.svg";
-import trash from "../../assets/images/trash.svg";
+import arrow from "../../../assets/images/arrow.svg";
+import edit from "../../../assets/images/edit.svg";
+import trash from "../../../assets/images/trash.svg";
 
 export default function ContactsList() {
   return (

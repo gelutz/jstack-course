@@ -1,4 +1,4 @@
-import ContactsList from "../../components/ContactsList";
+import ContactsList from "../Contact/ContactsList";
 import React from "react";
 
 const Home = () => {

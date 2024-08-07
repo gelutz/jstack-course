@@ -6,11 +6,11 @@ import NewContact from "./pages/Contact/NewContact";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <>
       <Route path="/" exact component={Home} />
       <Route path="/new" component={NewContact} />
       <Route path="/edit/:id" component={EditContact} />
-    </BrowserRouter>
+    </>
   );
 };
 

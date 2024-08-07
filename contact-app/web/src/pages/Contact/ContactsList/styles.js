@@ -19,8 +19,9 @@ export const Header = styled.header`
     text-decoration: none;
     font-weight: bold;
     border: 2px solid ${({ theme }) => theme.colors.primary.main};
-
+    padding: 0.5rem 1rem;
     transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    border-radius: 4px;
     /* transition: all 0.3s ease-in-out; */
 
     &:hover {
