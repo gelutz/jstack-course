@@ -52,6 +52,6 @@ bun run dev
 bun run build
 ```
 
-### Live Demo 🎥
+<!--- ### Live Demo 🎥
 
-[Live Demo](https://my-contacts.vercel.app/)
+ Live Demo](https://my-contacts.vercel.app/) --->
