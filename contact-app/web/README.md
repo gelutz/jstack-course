@@ -1,4 +1,4 @@
-C.R.U.D. App MyContacts
+# C.R.U.D. App MyContacts
 
 - [C.R.U.D. App MyContacts](#crud-app-mycontacts)
   - [Description](#description)
@@ -20,7 +20,7 @@ Simple CRUD App with React and Styled Components
 - Prettier
 - Vite
 
-### Installation 💻
+## Installation 💻
 
 > classic intsallation for any rect project (swap bun with npm if needed)
 
@@ -38,7 +38,7 @@ cd my-contacts
 bun install
 ```
 
-### Usage 📚
+## Usage 📚
 
 > run the app
 
@@ -52,6 +52,6 @@ bun run dev
 bun run build
 ```
 
-<!--- ### Live Demo 🎥
+## Live Demo 🎥
 
- Live Demo](https://my-contacts.vercel.app/) --->
+[My Contacts app on Vercel](https://jstack-course.vercel.app/)
