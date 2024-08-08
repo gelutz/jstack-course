@@ -21,7 +21,7 @@ Simple CRUD App that allows you to list, create, edit and delete contacts. Creat
   <h3> Tech stack 🛠️ </h3>
 </div>
 
-<div align="center">
+<div align="center" style="display: flex; flex-direction: row; justify-content: center;">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="vite" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" alt="react-router" width="40" height="40"/>
