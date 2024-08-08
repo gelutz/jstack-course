@@ -6,6 +6,9 @@ Each component on the course is a separate folder, and folders ending in _\*-app
 
 Each application has it's own README.md file, which contains the instructions for the application as well as the link for the live demo.
 
+I'm documenting everything I learn on my public notion workspace, which can be accessed here:
+[Gabriel's React Notion Page](https://www.notion.so/gelutz/React-f78ff0c05919480195b92db477049fcc)
+
 ## Course Folders
 
 - **contacts-app**
