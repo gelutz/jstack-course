@@ -15,20 +15,24 @@
 
 ## Description 📝
 
-Simple CRUD App with React and Styled Components
+Simple CRUD App that allows you to list, create, edit and delete contacts. Created during the JStack course in order to learn more about React and Styled Components.
 
-### Tech Stack 🛠️
+<div align="center">
+  <h3> Tech stack 🛠️ </h3>
+</div>
 
+<div align="center">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="vite" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" alt="react-router" width="40" height="40"/>
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" alt="eslint" width="40" height="40"/>
 <img src="https://prettier.io/icon.png" alt="prettier" height="40"/>
 <img src="https://styled-components.com/nav-logo.png" alt="vite" height="40"/>
+</div>
 
 ## Installation 💻
 
-> classic intsallation for any rect project (swap bun with npm if needed)
+> Classic installation for any react project (swap bun with npm if needed)
 
 1. Clone the repo
 2. Install dependencies
