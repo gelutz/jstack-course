@@ -7,6 +7,8 @@ import {
 } from "./styles";
 
 import { Link } from "react-router-dom";
+import Loader from "../../components/Loader";
+import Modal from "../../components/Modal";
 import React from "react";
 import arrow from "../../assets/images/arrow.svg";
 import edit from "../../assets/images/edit.svg";
@@ -16,7 +18,7 @@ export default function Home() {
   return (
     <Container>
       <InputSearchContainer>
-        <input type="text" name="" id="" placeholder="Pesquise pelo nome" />
+        <input type="text" placeholder="Pesquise pelo nome" />
       </InputSearchContainer>
 
       <Header>
@@ -43,9 +45,9 @@ export default function Home() {
           </div>
 
           <div className="actions">
-            <a href="/">
+            <Link to="/edit/1">
               <img src={edit} alt="edit" />
-            </a>
+            </Link>
             <button type="button">
               <img src={trash} alt="trash" />
             </button>
