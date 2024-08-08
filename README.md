@@ -31,3 +31,7 @@ I'm documenting everything I learn on my public notion workspace, which can be a
     - [ ] useMemo
     - [x] useRef
     - [ ] useImperativeHandle
+
+## Contact
+
+Gabriel Lutz - [@owlutz](https://twitter.com/owlutz) - gabriel.lutz5@gmail.com

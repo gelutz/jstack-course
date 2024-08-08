@@ -1,4 +1,10 @@
-# C.R.U.D. App MyContacts
+<div align="center">
+  <a href="https://github.com/gelutz/repo_name">
+    <img src="./src/assets/images/logo.svg" alt="Logo"height="80">
+  </a>
+</div>
+
+### Table of Contents
 
 - [C.R.U.D. App MyContacts](#crud-app-mycontacts)
   - [Description](#description)
@@ -13,12 +19,12 @@ Simple CRUD App with React and Styled Components
 
 ### Tech Stack 🛠️
 
-- React
-- Styled Components
-- React Router
-- ESLint
-- Prettier
-- Vite
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="vite" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="react" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/reactrouter/reactrouter-original.svg" alt="react-router" width="40" height="40"/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" alt="eslint" width="40" height="40"/>
+<img src="https://prettier.io/icon.png" alt="prettier" height="40"/>
+<img src="https://styled-components.com/nav-logo.png" alt="vite" height="40"/>
 
 ## Installation 💻
 
