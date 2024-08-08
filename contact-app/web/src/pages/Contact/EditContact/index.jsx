@@ -1,7 +1,12 @@
+import PageHeader from "../../../components/PageHeader";
 import React from "react";
 
 const EditContact = () => {
-  return <div>EditContact</div>;
+  return (
+    <>
+      <PageHeader titulo="Editar contato"></PageHeader>
+    </>
+  );
 };
 
 export default EditContact;

@@ -1,5 +1,12 @@
-import { Card, Container, Header, ListContainer } from "./styles";
+import {
+  Card,
+  Container,
+  Header,
+  InputSearchContainer,
+  ListContainer,
+} from "./styles";
 
+import { Link } from "react-router-dom";
 import React from "react";
 import arrow from "../../assets/images/arrow.svg";
 import edit from "../../assets/images/edit.svg";
@@ -8,9 +15,13 @@ import trash from "../../assets/images/trash.svg";
 export default function Home() {
   return (
     <Container>
+      <InputSearchContainer>
+        <input type="text" name="" id="" placeholder="Pesquise pelo nome" />
+      </InputSearchContainer>
+
       <Header>
         <h3>3 Contatos</h3>
-        <a href="#">Novo Contato</a>
+        <Link to="/new">Novo Contato</Link>
       </Header>
 
       <ListContainer>
