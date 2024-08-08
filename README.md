@@ -17,8 +17,6 @@ I'm documenting everything I learn on my public notion workspace, which can be a
 
     [MyContacts README](https://github.com/gelutz/jstack-course/blob/main/contact-app/web/README.md)
 
-- **jstack-app**
-  - This folder contains a very simple application that served to learn about the initial setup of a React application. It's not hosted nor has a README.md file.
 - **class-components**
   - This folder contains the code for the class components module. There's one class component with all lifecycle methods with a small explanation of each one.
 - **hooks (wip)**
