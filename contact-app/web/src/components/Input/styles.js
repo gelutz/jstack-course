@@ -9,7 +9,7 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledInput = styled.input`
+export const Input = styled.input`
   width: 100%;
   height: 52px;
   padding: 0 16px;
@@ -31,6 +31,8 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray[200]};
   }
+
+  &:required:invalid {
 
   ${({ error }) =>
     error &&

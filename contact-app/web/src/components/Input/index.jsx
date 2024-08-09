@@ -1,19 +1,20 @@
-import { Container, StyledInput } from "./styles";
-
+import { Container } from "./styles";
 import PropTypes from "prop-types";
 import React from "react";
 
-const Input = ({ error }) => {
+const InputContainer = ({ error, children }) => {
+  console.log(error);
   return (
     <Container>
-      <StyledInput error={!!error} />
+      {children}
       {error && <small>{error}</small>}
     </Container>
   );
 };
 
-Input.propTypes = {
+InputContainer.propTypes = {
   error: PropTypes.string,
+  children: PropTypes.node,
 };
 
-export default Input;
+export default InputContainer;
