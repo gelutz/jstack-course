@@ -53,7 +53,7 @@ bun install
 > run the app
 
 ```bash
-bun run dev
+bumn run dev
 ```
 
 > build the app
@@ -65,3 +65,4 @@ bun run build
 ## Live Demo 🎥
 
 [My Contacts app on Vercel](https://jstack-course.vercel.app/)
+[Figma Design](https://www.figma.com/design/zhAwjW2RimyjccDgiY6luz/MyContacts?node-id=0-1)
