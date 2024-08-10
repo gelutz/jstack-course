@@ -56,6 +56,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
         <InputContainer error={getErrorMessage("email")}>
           <Input
             placeholder="Email"
+            type="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
