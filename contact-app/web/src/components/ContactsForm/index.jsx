@@ -8,47 +8,44 @@ import { Input } from "../Input/styles";
 import InputContainer from "../Input";
 import PropTypes from "prop-types";
 import { Select } from "../Select";
+import { useErrors } from "../../hooks/useErrors";
 
 const ContactForm = ({ buttonLabel = "Enviar" }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [socials, setSocials] = useState("");
-  const [errors, setErrors] = useState([]);
+  const { addError, getErrorMessage } = useErrors();
 
   const validateForm = (data) => {
-    const errorsObject = {};
-
     if (data.get("name") === "") {
-      errorsObject.name = "Nome é obrigatório";
+      addError({ field: "name", message: "Nome é obrigatório" });
     }
 
     const emailInput = data.get("email");
     if (emailInput && !validateEmail(emailInput)) {
-      errorsObject.email = "Email é inválido";
+      addError({ field: "email", message: "Email é inválido" });
     }
 
     const telefoneInput = data.get("telefone");
     if (!telefoneInput) {
-      errorsObject.telefone = "Telefone é obrigatório";
+      addError({ field: "telefone", message: "Telefone é obrigatório" });
     } else if (!validatePhone(telefoneInput)) {
-      errorsObject.telefone = "Telefone é inválido";
+      addError({ field: "telefone", message: "Telefone é inválido" });
     }
-
-    return errorsObject;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    setErrors(validateForm(formData));
+    validateForm(formData);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
-        <InputContainer error={errors.name}>
+        <InputContainer error={getErrorMessage("name")}>
           <Input
             placeholder="Nome"
             name="name"
@@ -56,7 +53,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
             onChange={(e) => setName(e.target.value)}
           />
         </InputContainer>
-        <InputContainer error={errors.email}>
+        <InputContainer error={getErrorMessage("email")}>
           <Input
             placeholder="Email"
             name="email"
@@ -64,7 +61,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </InputContainer>
-        <InputContainer error={errors.telefone}>
+        <InputContainer error={getErrorMessage("telefone")}>
           <Input
             placeholder="Telefone"
             name="telefone"
@@ -73,7 +70,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
           />
         </InputContainer>
 
-        <InputContainer error={errors.socials}>
+        <InputContainer error={getErrorMessage("socials")}>
           <Select
             name="socials"
             value={socials}
