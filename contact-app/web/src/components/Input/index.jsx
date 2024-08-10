@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const InputContainer = ({ error, children }) => {
-  console.log(error);
   return (
-    <Container>
+    <Container $error={error}>
       {children}
       {error && <small>{error}</small>}
     </Container>

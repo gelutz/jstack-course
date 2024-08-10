@@ -7,6 +7,15 @@ export const Container = styled.div`
     font-size: 12px;
     color: ${({ theme }) => theme.colors.danger.main};
   }
+
+  // essa variável precisa ter o $ para que o styled-components saiba que é uma variavel transiente
+  ${({ $error }) =>
+    $error &&
+    css`
+      input {
+        border: 2px solid ${({ theme }) => theme.colors.danger.main};
+      }
+    `}
 `;
 
 export const Input = styled.input`
@@ -31,13 +40,4 @@ export const Input = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray[200]};
   }
-
-  &:required:invalid {
-
-  ${({ error }) =>
-    error &&
-    css`
-      border: 2px solid ${({ theme }) => theme.colors.danger.main};
-      color: ${({ theme }) => theme.colors.danger.main};
-    `}
 `;
