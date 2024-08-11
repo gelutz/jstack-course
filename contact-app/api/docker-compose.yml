@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   storedb:
     image: postgres:alpine
@@ -10,18 +8,14 @@ services:
       POSTGRES_USER: ${DB_USER}
     volumes:
       - postgres:/var/lib/postresql/data
+      - ./src/database/schema.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - ${DB_PORT}:${DB_PORT}
     networks:
       database:
-        ipv4_address: 10.1.1.10
 
 networks:
   database:
-    ipam:
-      driver: default
-      config:
-        - subnet: "10.1.1.0/24"
 
 volumes:
   postgres:
