@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  storedb:
+    image: postgres:alpine
+    container_name: store-db
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+    volumes:
+      - postgres:/var/lib/postresql/data
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      database:
+        ipv4_address: 10.1.1.10
+
+networks:
+  database:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.1.1.0/24"
+
+volumes:
+  postgres:
