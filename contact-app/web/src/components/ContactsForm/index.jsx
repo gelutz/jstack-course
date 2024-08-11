@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { validateEmail, validatePhone } from "../../utils/validation";
+import { isValidEmail, maskPhone } from "../../utils/validation";
 
 import { Button } from "../Button";
 import { Form } from "./styles";
@@ -23,15 +23,14 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
     }
 
     const emailInput = data.get("email");
-    if (emailInput && !validateEmail(emailInput)) {
+    if (emailInput && !isValidEmail(emailInput)) {
       addError({ field: "email", message: "Email é inválido" });
     }
 
     const telefoneInput = data.get("telefone");
+    console.log(telefoneInput);
     if (!telefoneInput) {
       addError({ field: "telefone", message: "Telefone é obrigatório" });
-    } else if (!validatePhone(telefoneInput)) {
-      addError({ field: "telefone", message: "Telefone é inválido" });
     }
   };
 
@@ -40,6 +39,8 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
     const formData = new FormData(event.target);
 
     validateForm(formData);
+    // para enviar o telefone sem os caracteres extras
+    // usar essa regex: /^(\D)/g
   };
 
   return (
@@ -47,7 +48,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
       <FormGroup>
         <InputContainer error={getErrorMessage("name")}>
           <Input
-            placeholder="Nome"
+            placeholder="Nome *"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -64,10 +65,11 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
         </InputContainer>
         <InputContainer error={getErrorMessage("telefone")}>
           <Input
-            placeholder="Telefone"
+            placeholder="+55 (99) 99999-9999 *"
             name="telefone"
             value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
+            maxLength="15"
+            onChange={(e) => setTelefone(maskPhone(e.target.value))}
           />
         </InputContainer>
 
