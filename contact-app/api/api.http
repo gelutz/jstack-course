@@ -1,0 +1,23 @@
+### Create categories
+POST http://localhost:3001/categories
+Content-Type: application/json
+
+{
+  "name": "Family"
+}
+
+### Create contacts
+POST http://localhost:3001/contacts
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "123456789"
+}
+
+### Get all categories
+GET http://localhost:3001/categories
+
+### Get all contacts
+GET http://localhost:3001/contacts
