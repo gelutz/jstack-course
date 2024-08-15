@@ -8,6 +8,7 @@
 		"dev": "nodemon src/index.js"
 	},
 	"dependencies": {
+		"@infisical/sdk": "^2.3.1",
 		"dotenv": "^16.4.5",
 		"express": "^4.17.2",
 		"express-async-errors": "^3.1.1",
