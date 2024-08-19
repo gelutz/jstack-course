@@ -6,6 +6,14 @@ meta {
 
 post {
   url: {{backUrl}}/contacts
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "name":"John Doe",
+    "email": "john@gmail.com",
+    "phone":"5112312312",
+  }
 }
