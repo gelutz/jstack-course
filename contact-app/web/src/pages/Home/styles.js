@@ -32,24 +32,32 @@ export const Header = styled.header`
   }
 `;
 
-export const ListContainer = styled.div`
+export const ListHeader = styled.header`
   border-top: 2px solid ${({ theme }) => theme.colors.primary.lighter};
   margin-top: 24px;
   padding-top: 24px;
 
-  header {
-    button {
-      background: transparent;
-      border: none;
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+  button {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
 
-    span {
-      color: ${({ theme }) => theme.colors.primary.main};
-      margin-right: 8px;
-      font-weight: bold;
+  span {
+    color: ${({ theme }) => theme.colors.primary.main};
+    margin-right: 8px;
+    font-weight: bold;
+  }
+
+  img {
+    transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    rotate: ${({ order }) => (order === "asc" ? "0deg" : "180deg")};
+
+    &:hover {
+      cursor: pointer;
+      rotate: ${({ order }) => (order === "desc" ? "200deg" : "-20deg")};
     }
   }
 `;

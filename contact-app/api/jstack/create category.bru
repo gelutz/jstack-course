@@ -1,0 +1,17 @@
+meta {
+  name: create category
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{backUrl}}/contacts
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Instagram"
+  }
+}

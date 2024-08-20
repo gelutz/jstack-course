@@ -1,85 +1,92 @@
-const ContactsRepository = require('../repositories/ContactsRepository');
+const ContactsRepository = require("../repositories/ContactsRepository");
 
 class ContactController {
-  async index(request, response) {
-    // Listar todos os registros
-    const { orderBy } = request.query;
-    const contacts = await ContactsRepository.findAll(orderBy);
-    response.json(contacts);
-  }
+	async index(request, response) {
+		// Listar todos os registros
+		const { orderBy } = request.query;
+		const contacts = await ContactsRepository.findAll(orderBy);
 
-  async show(request, response) {
-    // Obter UM registro
-    const { id } = request.params;
-    const contact = await ContactsRepository.findById(id);
+		response.json(contacts);
+	}
 
-    if (!contact) {
-      return response.status(404).json({ error: 'User not found' });
-    }
+	async show(request, response) {
+		// Obter UM registro
+		const { id } = request.params;
+		const contact = await ContactsRepository.findById(id);
 
-    response.json(contact);
-  }
+		if (!contact) {
+			return response.status(404).json({ error: "User not found" });
+		}
 
-  async store(request, response) {
-    // Criar novo registro
-    const {
-      name, email, phone, category_id,
-    } = request.body;
+		response.json(contact);
+	}
 
-    if (!name) {
-      return response.status(400).json({ error: 'Name is required' });
-    }
+	async store(request, response) {
+		// Criar novo registro
+		const { name, email, phone, category_id } = request.body;
 
-    const contactExists = await ContactsRepository.findByEmail(email);
+		if (!name) {
+			return response.status(400).json({ error: "Name is required" });
+		}
 
-    if (contactExists) {
-      return response.status(400).json({ error: 'This e-mail is already in use' });
-    }
+		const contactExists = await ContactsRepository.findByEmail(email);
 
-    const contact = await ContactsRepository.create({
-      name, email, phone, category_id,
-    });
+		if (contactExists) {
+			return response
+				.status(400)
+				.json({ error: "This e-mail is already in use" });
+		}
 
-    response.json(contact);
-  }
+		const contact = await ContactsRepository.create({
+			name,
+			email,
+			phone,
+			category_id,
+		});
 
-  async update(request, response) {
-    // Editar um registro
-    const { id } = request.params;
-    const {
-      name, email, phone, category_id,
-    } = request.body;
+		response.json(contact);
+	}
 
-    const contactExists = await ContactsRepository.findById(id);
-    if (!contactExists) {
-      return response.status(400).json({ error: 'User not found' });
-    }
+	async update(request, response) {
+		// Editar um registro
+		const { id } = request.params;
+		const { name, email, phone, category_id } = request.body;
 
-    if (!name) {
-      return response.status(400).json({ error: 'Name is required' });
-    }
+		const contactExists = await ContactsRepository.findById(id);
+		if (!contactExists) {
+			return response.status(400).json({ error: "User not found" });
+		}
 
-    const contactByEmail = await ContactsRepository.findByEmail(email);
+		if (!name) {
+			return response.status(400).json({ error: "Name is required" });
+		}
 
-    if (contactByEmail && contactByEmail.id !== id) {
-      return response.status(400).json({ error: 'This e-mail is already in use' });
-    }
+		const contactByEmail = await ContactsRepository.findByEmail(email);
 
-    const contact = await ContactsRepository.update(id, {
-      name, email, phone, category_id,
-    });
+		if (contactByEmail && contactByEmail.id !== id) {
+			return response
+				.status(400)
+				.json({ error: "This e-mail is already in use" });
+		}
 
-    response.json(contact);
-  }
+		const contact = await ContactsRepository.update(id, {
+			name,
+			email,
+			phone,
+			category_id,
+		});
 
-  async delete(request, response) {
-    // Deletar um registro
-    const { id } = request.params;
+		response.json(contact);
+	}
 
-    await ContactsRepository.delete(id);
-    // 204: No Content
-    response.sendStatus(204);
-  }
+	async delete(request, response) {
+		// Deletar um registro
+		const { id } = request.params;
+
+		await ContactsRepository.delete(id);
+		// 204: No Content
+		response.sendStatus(204);
+	}
 }
 
 // Singleton
