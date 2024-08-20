@@ -5,11 +5,13 @@ let client;
 
 module.exports = {
 	connect: async () => {
-		const host = await getSecret("VERCEL_HOST");
-		const port = await getSecret("VERCEL_PORT");
-		const user = await getSecret("VERCEL_USER");
-		const password = await getSecret("VERCEL_PASSWORD");
-		const database = await getSecret("VERCEL_DATABASE");
+		const [host, port, user, password, database] = await Promise.all([
+			getSecret("VERCEL_HOST"),
+			getSecret("VERCEL_PORT"),
+			getSecret("VERCEL_USER"),
+			getSecret("VERCEL_PASSWORD"),
+			getSecret("VERCEL_DATABASE"),
+		]);
 
 		client = new Client({
 			host,

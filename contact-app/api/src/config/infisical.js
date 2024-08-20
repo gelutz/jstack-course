@@ -1,11 +1,6 @@
 require("dotenv").config();
 const { InfisicalClient } = require("@infisical/sdk");
 
-console.log(
-	process.env.INFISICAL_CLIENT_ID,
-	process.env.INFISICAL_CLIENT_SECRET
-);
-
 const infisical = new InfisicalClient({
 	auth: {
 		universalAuth: {
