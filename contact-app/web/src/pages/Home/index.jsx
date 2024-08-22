@@ -15,6 +15,11 @@ import trash from "../../assets/images/trash.svg";
 export default function Home() {
   const [order, setOrder] = useState("asc");
   const [contacts, setContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     fetch(`http://localhost:3001/contacts?orderBy=${order}`)
@@ -24,30 +29,43 @@ export default function Home() {
 
   const handleReorder = (e) => {
     e.preventDefault();
-    setOrder(order === "asc" ? "desc" : "asc");
+    setOrder((prevState) => (prevState === "asc" ? "desc" : "asc"));
+  };
+
+  const handleChangeInput = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   return (
     <Container>
       <InputSearchContainer>
-        <input type="text" placeholder="Pesquise pelo nome" />
+        <input
+          value={searchTerm}
+          onChange={handleChangeInput}
+          type="text"
+          placeholder="Pesquise pelo nome"
+        />
       </InputSearchContainer>
 
       <Header>
         <h3>
-          {`${contacts.length} contato${contacts.length == 1 ? "" : "s"}`}
+          {`${filteredContacts.length} contato${
+            filteredContacts.length == 1 ? "" : "s"
+          }`}
         </h3>
         <Link to="/new">Novo Contato</Link>
       </Header>
 
-      <ListHeader order={order}>
-        <button type="button" onClick={handleReorder}>
-          <span>Nome</span>
-          <img src={arrow} alt="arrow" />
-        </button>
-      </ListHeader>
+      {filteredContacts.length !== 0 && (
+        <ListHeader order={order}>
+          <button type="button" onClick={handleReorder}>
+            <span>Nome</span>
+            <img src={arrow} alt="arrow" />
+          </button>
+        </ListHeader>
+      )}
 
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <Card key={contact.id}>
           <div className="info">
             <div className="contact-name">

@@ -52,12 +52,12 @@ export const ListHeader = styled.header`
   }
 
   img {
-    transition: all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    rotate: ${({ order }) => (order === "asc" ? "0deg" : "180deg")};
+    transition: transform 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transform: ${({ order }) =>
+      order === "asc" ? "rotate(0deg)" : "rotate(180deg)"};
 
     &:hover {
       cursor: pointer;
-      rotate: ${({ order }) => (order === "desc" ? "200deg" : "-20deg")};
     }
   }
 `;
