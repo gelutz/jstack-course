@@ -10,8 +10,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader";
 import arrow from "../../assets/images/arrow.svg";
+import { contactService } from "../../services/ContactService";
 import edit from "../../assets/images/edit.svg";
-import { tc } from "../../utils/try";
 import trash from "../../assets/images/trash.svg";
 
 export default function Home() {
@@ -30,17 +30,10 @@ export default function Home() {
   );
 
   useEffect(() => {
-    const fetchContacts = async () => {
-      setIsLoading(true);
-
-      // função tc transforma uma promise em um array com result e erro
-      // essencialmente transformando o erro em um valor
-      const [response, error] = await tc(
-        fetch(`http://localhost:3001/contacts?orderBy=${order}`).then((res) =>
-          res.json()
-        )
-      );
-
+    // a função que é passada para o useEffect precisa ser síncrona
+    // caso contrário, a função de cleanup não será executada (vai retornar uma promise)
+    // para trabalhar com await dentro do use effect, é melhor criar e rodar uma função assíncrona
+    contactService.fetchContacts({ order: "asc" }).then(([response, error]) => {
       if (error) {
         console.log("Erro: x-x-x-", error);
       }
@@ -50,12 +43,7 @@ export default function Home() {
       }
 
       setIsLoading(false);
-    };
-
-    // a função que é passada para o useEffect precisa ser síncrona
-    // caso contrário, a função de cleanup não será executada (vai retornar uma promise)
-    // para trabalhar com await dentro do use effect, é melhor criar e rodar uma função assíncrona
-    fetchContacts();
+    });
 
     return () => console.log("unmount"); // exemplo de função de cleanup (roda depois do unmount)
   }, [order]);
