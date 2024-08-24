@@ -5,6 +5,13 @@ export class HttpClient {
 
   async get(url) {
     const response = await fetch(this.baseUrl + url);
-    return await response.json();
+
+    if (!response.ok) {
+      throw new Error(`${response.status} -x-x- ${response.statusText}`);
+    }
+
+    const json = await response.json();
+
+    return json;
   }
 }

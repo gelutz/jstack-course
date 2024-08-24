@@ -2,7 +2,13 @@ import { HttpClient } from "../interfaces/HttpClient";
 import { tc } from "../utils/try";
 
 class ContactService {
-  api = new HttpClient("http://localhost:3001");
+  constructor() {
+    if (import.meta.env.NODE_ENV === "development") {
+      this.api = new HttpClient("http://localhost:3001");
+    } else {
+      this.api = new HttpClient(import.meta.env.API_URL);
+    }
+  }
 
   fetchContacts = async ({ order }) => {
     // função tc transforma uma promise em um array com result e erro
