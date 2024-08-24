@@ -1,8 +1,11 @@
 import { Overlay } from "./styles";
 import React from "react";
 import ReactDOM from "react-dom";
+import propTypes from "prop-types";
 
-const Loader = () => {
+export const Loader = ({ isLoading }) => {
+  if (!isLoading) return null;
+
   return ReactDOM.createPortal(
     <Overlay>
       <div className="loader"></div>
@@ -11,4 +14,6 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+Loader.propTypes = {
+  isLoading: propTypes.bool,
+};

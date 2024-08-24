@@ -5,11 +5,13 @@ import {
   InputSearchContainer,
   ListHeader,
 } from "./styles";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { Link } from "react-router-dom";
+import { Loader } from "../../components/Loader";
 import arrow from "../../assets/images/arrow.svg";
 import edit from "../../assets/images/edit.svg";
+import { tc } from "../../utils/try";
 import trash from "../../assets/images/trash.svg";
 
 export default function Home() {
@@ -17,14 +19,45 @@ export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const [isLoading, setIsLoading] = useState(true);
+
+  const filteredContacts = useMemo(
+    () =>
+      contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    [contacts, searchTerm]
   );
 
   useEffect(() => {
-    fetch(`http://localhost:3001/contacts?orderBy=${order}`)
-      .then((res) => res.json())
-      .then((data) => setContacts(data));
+    const fetchContacts = async () => {
+      setIsLoading(true);
+
+      // função tc transforma uma promise em um array com result e erro
+      // essencialmente transformando o erro em um valor
+      const [response, error] = await tc(
+        fetch(`http://localhost:3001/contacts?orderBy=${order}`).then((res) =>
+          res.json()
+        )
+      );
+
+      if (error) {
+        console.log("Erro: x-x-x-", error);
+      }
+
+      if (response) {
+        setContacts(response);
+      }
+
+      setIsLoading(false);
+    };
+
+    // a função que é passada para o useEffect precisa ser síncrona
+    // caso contrário, a função de cleanup não será executada (vai retornar uma promise)
+    // para trabalhar com await dentro do use effect, é melhor criar e rodar uma função assíncrona
+    fetchContacts();
+
+    return () => console.log("unmount"); // exemplo de função de cleanup (roda depois do unmount)
   }, [order]);
 
   const handleReorder = (e) => {
@@ -38,6 +71,7 @@ export default function Home() {
 
   return (
     <Container>
+      <Loader isLoading={isLoading} />
       <InputSearchContainer>
         <input
           value={searchTerm}
@@ -46,7 +80,6 @@ export default function Home() {
           placeholder="Pesquise pelo nome"
         />
       </InputSearchContainer>
-
       <Header>
         <h3>
           {`${filteredContacts.length} contato${
@@ -55,7 +88,6 @@ export default function Home() {
         </h3>
         <Link to="/new">Novo Contato</Link>
       </Header>
-
       {filteredContacts.length !== 0 && (
         <ListHeader order={order}>
           <button type="button" onClick={handleReorder}>
@@ -64,7 +96,6 @@ export default function Home() {
           </button>
         </ListHeader>
       )}
-
       {filteredContacts.map((contact) => (
         <Card key={contact.id}>
           <div className="info">
