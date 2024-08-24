@@ -30,12 +30,13 @@ export default function Home() {
   );
 
   useEffect(() => {
+    setIsLoading(true);
     // a função que é passada para o useEffect precisa ser síncrona
     // caso contrário, a função de cleanup não será executada (vai retornar uma promise)
     // para trabalhar com await dentro do use effect, é melhor criar e rodar uma função assíncrona
     contactService.fetchContacts({ order: "asc" }).then(([response, error]) => {
       if (error) {
-        console.log("Erro: x-x-x-", error);
+        // mostrar um toast, algo assim
       }
 
       if (response) {
