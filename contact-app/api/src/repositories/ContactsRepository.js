@@ -1,4 +1,4 @@
-const db = require("../../database");
+const db = require("../database");
 
 class ContactsRepository {
 	async findAll(orderBy = "ASC") {
