@@ -1,16 +1,16 @@
 const { Client } = require("pg");
-const { getSecret } = require("../config/infisical");
+const env = require("../utils/env");
 
 let client;
 
 module.exports = {
 	connect: async () => {
 		const [host, port, user, password, database] = await Promise.all([
-			getSecret("VERCEL_HOST"),
-			getSecret("VERCEL_PORT"),
-			getSecret("VERCEL_USER"),
-			getSecret("VERCEL_PASSWORD"),
-			getSecret("VERCEL_DATABASE"),
+			env.get("POSTGRES_HOST"),
+			env.get("POSTGRES_PORT"),
+			env.get("POSTGRES_USER"),
+			env.get("POSTGRES_PASSWORD"),
+			env.get("POSTGRES_DATABASE"),
 		]);
 
 		client = new Client({
