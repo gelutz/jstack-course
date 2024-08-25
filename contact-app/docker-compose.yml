@@ -1,7 +1,7 @@
 services:
   storedb:
     image: postgres:alpine
-    container_name: store-db
+    container_name: database
     environment:
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -20,13 +20,28 @@ services:
     working_dir: /app
     command: sh -c "npm install && npm run start"
     volumes:
-      - .:/app
+      - ./api:/app
     ports:
       - ${API_PORT}:${API_PORT}
     networks:
       - database
     depends_on:
       - storedb
+
+
+  # web:
+  #   image: node:18-alpine
+  #   container_name: web
+  #   working_dir: /app
+  #   command: sh -c "npm install && npm run start"
+  #   volumes:
+  #     - ./web:/app
+  #   ports:
+  #     - ${WEB_PORT}:${WEB_PORT}
+  #   networks:
+  #     - database
+  #   depends_on:
+  #     - api
 
 networks:
   database:

@@ -1,24 +1,27 @@
 {
-	"name": "my-contacts-api",
-	"version": "0.0.1",
-	"description": "API to store contacts",
-	"main": "src/index.js",
-	"license": "MIT",
-	"scripts": {
-		"start": "node src/index.js",
-		"dev": "nodemon src/index.js"
-	},
-	"dependencies": {
-		"@infisical/sdk": "^2.3.1",
-		"dotenv": "^16.4.5",
-		"express": "^4.17.2",
-		"express-async-errors": "^3.1.1",
-		"pg": "^8.7.1"
-	},
-	"devDependencies": {
-		"eslint": "^8.5.0",
-		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-plugin-import": "^2.25.3",
-		"nodemon": "^2.0.15"
-	}
+  "name": "my-contacts-api",
+  "version": "0.0.1",
+  "description": "API to store contacts",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "deploy:dev": "vercel",
+    "deploy:prod": "vercel --prod"
+  },
+  "dependencies": {
+    "@infisical/sdk": "^2.3.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15",
+    "vercel": "^37.1.1"
+  }
 }
