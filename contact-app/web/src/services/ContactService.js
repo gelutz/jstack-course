@@ -3,10 +3,10 @@ import { tc } from "../utils/try";
 
 class ContactService {
   constructor() {
-    if (import.meta.env.NODE_ENV === "development") {
+    if (import.meta.env.DEV === true) {
       this.api = new HttpClient("http://localhost:3001");
     } else {
-      this.api = new HttpClient(import.meta.env.API_URL);
+      this.api = new HttpClient("https://jstack-contacts-api.vercel.app");
     }
   }
 

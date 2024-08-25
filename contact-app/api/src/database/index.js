@@ -22,7 +22,7 @@ module.exports = {
 			ssl: true,
 		});
 
-		return await client.connect();
+		return client.connect();
 	},
 
 	migrate: async () => {

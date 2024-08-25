@@ -1,6 +1,10 @@
 require("dotenv").config();
 const { InfisicalClient } = require("@infisical/sdk");
 
+if (!process.env.INFISICAL_CLIENT_ID || !process.env.INFISICAL_CLIENT_SECRET) {
+	throw new Error("Missing Infisical credentials");
+}
+
 const infisical = new InfisicalClient({
 	auth: {
 		universalAuth: {
