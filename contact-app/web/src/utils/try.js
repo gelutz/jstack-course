@@ -3,7 +3,7 @@ export const tc = async (promise) => {
     const result = await promise;
     return [result, null];
   } catch (error) {
-    console.log("Erro! -x-x:", error);
+    console.log("Ocorreu um erro:", error);
     return [null, error];
   }
 };
