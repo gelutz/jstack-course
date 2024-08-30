@@ -1,5 +1,7 @@
+# @host = http://localhost:3001
+@host = https://contacts-jttveestu-gelutzs-projects.vercel.app
 ### Create categories
-POST http://localhost:3001/categories
+POST {{host}}/api/categories
 Content-Type: application/json
 
 {
@@ -7,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Create contacts
-POST http://localhost:3001/contacts
+POST {{host}}/contacts
 Content-Type: application/json
 
 {
@@ -17,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Get all categories
-GET http://localhost:3001/categories
+GET {{host}}/categories
 
 ### Get all contacts
-GET http://localhost:3001/contacts
+GET {{host}}/contacts
