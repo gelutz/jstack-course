@@ -13,9 +13,14 @@ I'm documenting everything I learn on my public notion workspace, which can be a
 
 - **contacts-app**
 
-  - This folder contains the code for MyContacts application. It's a simple application that allows you to add, edit, and delete contacts.
+  - Inside this folder, there are two separate services (frontend and backend) for a simple CRUD of contacts and categories. Both are deployed separately on Vercel.
+
+    - Frontend: Basic ReactJS application created with Create React App.
+    - Backend: NodeJS ExpressJS application configured to run as a serverless function on Vercel when deployed and as a local server when running on docker.
 
     [MyContacts README](https://github.com/gelutz/jstack-course/blob/main/contact-app/web/README.md)
+
+    [MyContacts Live Demo](https://contacts-app.vercel.app/)
 
 - **class-components**
   - This folder contains the code for the class components module. There's one class component with all lifecycle methods with a small explanation of each one.
