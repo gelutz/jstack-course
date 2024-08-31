@@ -19,7 +19,7 @@ app.use((error, request, response, next) => {
 connect().then(() => {
 	migrate();
 	console.log("Database connected");
-
+	console.log(process.env.prod, process.env.NODE_ENV, process.env);
 	if (!isProduction()) {
 		console.log("dev env");
 		app.listen(3001, () => console.log("Server started http://localhost:3001"));
