@@ -4,6 +4,7 @@ require("express-async-errors");
 const { connect, migrate } = require("./database");
 const { cors } = require("./middlewares/cors");
 const routes = require("./routes");
+const { isProduction } = require("./utils/isProduction");
 
 const app = express();
 app.use(express.json());
@@ -19,7 +20,11 @@ connect().then(() => {
 	migrate();
 	console.log("Database connected");
 	// fazendo deploy na vercel o .listen é controlado pela vercel
-	app.listen(3001, () => console.log("Server started http://localhost:3001"));
+	if (!isProduction()) {
+		app.listen(3001, () => console.log("Server started http://localhost:3001"));
+	}
 });
 
-module.exports = app;
+if (isProduction()) {
+	module.exports = app;
+}

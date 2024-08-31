@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@infisical/sdk": "^2.3.1",
+    "@vercel/node": "^3.2.10",
     "dotenv": "^16.4.5",
     "express": "^4.17.2",
     "express-async-errors": "^3.1.1",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "typescript": "^5.5.4"
   },
   "devDependencies": {
     "eslint": "^8.5.0",
