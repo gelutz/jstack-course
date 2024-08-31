@@ -1,5 +1,4 @@
 const express = require("express");
-const { createVercelHandler } = require("@vercel/node");
 require("express-async-errors");
 
 const { connect, migrate } = require("./database");
@@ -27,5 +26,5 @@ connect().then(() => {
 });
 
 if (isProduction()) {
-	module.exports = createVercelHandler(app);
+	module.exports = app;
 }
