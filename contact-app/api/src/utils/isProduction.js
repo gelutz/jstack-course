@@ -1,1 +1,1 @@
-exports.isProduction = () => process.env.PROD === true;
+exports.isProduction = () => process.env.VERCEL_ENV === "production";

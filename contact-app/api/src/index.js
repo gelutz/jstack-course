@@ -1,5 +1,7 @@
 const express = require("express");
+
 require("express-async-errors");
+require("dotenv").config();
 
 const { connect, migrate } = require("./database");
 const { cors } = require("./middlewares/cors");
