@@ -1,5 +1,6 @@
 const { Client } = require("pg");
 const env = require("../utils/env");
+const { isProduction } = require("../utils/isProduction");
 
 let client;
 
@@ -19,7 +20,7 @@ module.exports = {
 			user,
 			password,
 			database,
-			ssl: true,
+			ssl: isProduction(),
 		});
 
 		return client.connect();

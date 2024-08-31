@@ -19,15 +19,18 @@ app.use((error, request, response, next) => {
 });
 
 connect().then(() => {
-	migrate();
 	console.log("Database connected");
 	if (!isProduction()) {
-		console.log("dev env");
-		app.listen(3001, () => console.log("Server started http://localhost:3001"));
+		migrate();
+
+		const port = process.env.API_PORT || 3001;
+
+		app.listen(port, () =>
+			console.log(`Server started http://localhost:${port}`)
+		);
 	}
 });
 
 if (isProduction()) {
-	console.log("prod env");
 	module.exports = app;
 }

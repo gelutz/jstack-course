@@ -1,9 +1,10 @@
 import { HttpClient } from "../interfaces/HttpClient";
+import { isProduction } from "../utils/isProduction";
 import { tc } from "../utils/try";
 
 class ContactService {
   constructor() {
-    if (import.meta.env.DEV === true) {
+    if (!isProduction()) {
       this.api = new HttpClient("http://localhost:3001");
     } else {
       this.api = new HttpClient("https://jstack-contacts-api.vercel.app");
