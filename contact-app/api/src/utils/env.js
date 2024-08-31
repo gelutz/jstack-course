@@ -1,16 +1,26 @@
-const { getSecret } = require("../config/infisical");
 const { isProduction } = require("./isProduction");
 
-const env = {
-	// exemplo de uso do infisical
-	// quando o deploy é feito na vercel, usa as variáveis cadastradas na própria vercel
-	// quando o deploy é feito localmente, pega no infisical
-	get: async (name) => {
-		if (isProduction()) {
-			return process.env[name];
-		}
+// essas variáveis precisam estar no .env do projeto (apenas no ambiente dev)
+if (!isProduction()) {
+	const requiredVariables = [
+		"POSTGRES_HOST",
+		"POSTGRES_PORT",
+		"POSTGRES_USER",
+		"POSTGRES_PASSWORD",
+		"POSTGRES_DATABASE",
+		"API_PORT",
+	];
 
-		return await getSecret(name);
+	requiredVariables.forEach((variable) => {
+		if (!process.env[variable]) {
+			throw new Error(`Missing ${variable} environment variable`);
+		}
+	});
+}
+
+const env = {
+	get: async (name) => {
+		return process.env[name];
 	},
 };
 
