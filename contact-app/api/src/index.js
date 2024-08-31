@@ -19,7 +19,7 @@ app.use((error, request, response, next) => {
 connect().then(() => {
 	migrate();
 	console.log("Database connected");
-	// fazendo deploy na vercel o .listen é controlado pela vercel
+
 	if (!isProduction()) {
 		console.log("dev env");
 		app.listen(3001, () => console.log("Server started http://localhost:3001"));
