@@ -1,24 +1,23 @@
+import { ApiError } from "./errors/ApiError";
+
 export class HttpClient {
-  constructor(url = "http://localhost:3001") {
+  constructor(url) {
     this.baseUrl = url;
   }
 
   async get(url) {
     const response = await fetch(this.baseUrl + url);
-
+    console.log(response);
     const type = response.headers.get("content-type");
     if (!type.includes("application/json")) {
       throw new Error(`${response.status} - ${response.statusText}`);
     }
-
     const json = await response.json();
 
-    if (!response.ok) {
-      throw new Error(
-        `${response.status} - ${json?.error || response.statusText}`
-      );
+    if (response.ok) {
+      return json;
     }
 
-    return json;
+    throw new ApiError(response, json);
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from "../interfaces/HttpClient";
+import { delay } from "../utils/delay";
 import { isProduction } from "../utils/isProduction";
-import { tc } from "../utils/try";
 
 class ContactService {
   constructor() {
@@ -12,9 +12,8 @@ class ContactService {
   }
 
   fetchContacts = async ({ order }) => {
-    // função tc transforma uma promise em um array com result e erro
-    // essencialmente transformando o erro em um valor (é uma forma de evitar o try catch)
-    return tc(this.api.get(`/contacts?orderBy=${order}`));
+    await delay(1000);
+    return this.api.get(`/contacts/dasdasd?orderBy=${order}`);
   };
 }
 
