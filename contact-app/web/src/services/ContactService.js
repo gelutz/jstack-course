@@ -13,7 +13,7 @@ class ContactService {
 
   fetchContacts = async ({ order }) => {
     await delay(1000);
-    return this.api.get(`/contacts/dasdasd?orderBy=${order}`);
+    return this.api.get(`/contacts?orderBy=${order}`);
   };
 }
 

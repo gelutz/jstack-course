@@ -7,7 +7,6 @@ export class HttpClient {
 
   async get(url) {
     const response = await fetch(this.baseUrl + url);
-    console.log(response);
     const type = response.headers.get("content-type");
     if (!type.includes("application/json")) {
       throw new Error(`${response.status} - ${response.statusText}`);

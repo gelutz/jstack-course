@@ -90,8 +90,7 @@ export default function Home() {
       </Header>
 
       {hasError ? (
-        // <Error retryFunction={handleRetry} />
-        <></>
+        <Error retryFunction={handleRetry} />
       ) : (
         <>
           {filteredContacts.length !== 0 && (

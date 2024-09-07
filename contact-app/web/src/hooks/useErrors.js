@@ -4,8 +4,6 @@ export const useErrors = () => {
   const [errors, setErrors] = useState([]);
 
   const addError = ({ field, message }) => {
-    console.log(errors);
-
     const errorExists = errors.filter((error) => error.field === field);
 
     if (errorExists.length > 0) {

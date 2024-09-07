@@ -28,7 +28,6 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
     }
 
     const telefoneInput = data.get("telefone");
-    console.log(telefoneInput);
     if (!telefoneInput) {
       addError({ field: "telefone", message: "Telefone é obrigatório" });
     }
