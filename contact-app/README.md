@@ -40,26 +40,32 @@ Simple CRUD App that allows you to list, create, edit and delete contacts. Creat
 4. Build the app
 
 ```bash
-git clone https://github.com/gabriel-lutz/my-contacts.git
-cd my-contacts
+git clone https://github.com/gelutz/jstack-course
+cd jstack-course/contact-app
 ```
+
+### Backend
+
+The backend can be run locally with docker or on Vercel.
+Docker runs two containers, one for the postgres database and one for the api server.
+You first need to create a `.env` file in the `api` folder and add the necessary variables.
 
 ```bash
-bun install
+# from ~/jstack-course/contact-app
+cd api
+
+docker compose up -d
 ```
 
-## Usage 📚
+### Frontend
 
 > run the app
 
 ```bash
-bumn run dev
-```
-
-> build the app
-
-```bash
-bun run build
+# from ~/jstack-course/contact-app
+cd web
+bun install
+bun dev
 ```
 
 ## Live Demo 🎥

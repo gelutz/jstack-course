@@ -18,7 +18,7 @@ I'm documenting everything I learn on my public notion workspace, which can be a
     - Frontend: Basic ReactJS application created with Create React App.
     - Backend: NodeJS ExpressJS application configured to run as a serverless function on Vercel when deployed and as a local server when running on docker.
 
-    [MyContacts README](https://github.com/gelutz/jstack-course/blob/main/contact-app/web/README.md)
+    [MyContacts README](https://github.com/gelutz/jstack-course/blob/main/contact-app/README.md)
 
     [MyContacts Live Demo](https://contacts-app.vercel.app/)
 
