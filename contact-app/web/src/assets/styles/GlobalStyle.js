@@ -17,4 +17,8 @@ export const GlobalStyles = createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    strong {
+        color: ${({ theme }) => theme.colors.primary.main};
+    }
 `;

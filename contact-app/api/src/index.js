@@ -15,7 +15,7 @@ app.use(cors);
 app.use(routes);
 app.use((error, request, response, next) => {
 	console.log(error);
-	response.sendStatus(500);
+	return response.sendStatus(500);
 });
 
 connect().then(() => {

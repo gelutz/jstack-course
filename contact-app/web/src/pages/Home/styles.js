@@ -8,8 +8,9 @@ export const Container = styled.div`
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 32px;
+  justify-content: ${({ justifycontent }) => justifycontent};
+  padding-bottom: 32px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary.lighter};
 
   strong {
     font-size: 24px;
@@ -33,8 +34,6 @@ export const Header = styled.header`
 `;
 
 export const ListHeader = styled.header`
-  border-top: 2px solid ${({ theme }) => theme.colors.primary.lighter};
-  margin-top: 24px;
   padding-top: 24px;
 
   button {

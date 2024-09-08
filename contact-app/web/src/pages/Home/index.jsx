@@ -10,6 +10,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Error } from "../../components/Error";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader";
+import { NoContactsRegistered } from "../../components/NoContactsRegistered";
+import { NoFilteredContactsFound } from "../../components/NoFilteredContactsFound";
 import arrow from "../../assets/images/arrow.svg";
 import { contactService } from "../../services/ContactService";
 import edit from "../../assets/images/edit.svg";
@@ -75,57 +77,72 @@ export default function Home() {
           placeholder="Pesquise pelo nome"
         />
       </InputSearchContainer>
-      <Header>
+      <Header
+        justifycontent={
+          hasError
+            ? "flex-end"
+            : contacts.length > 0
+            ? "space-between"
+            : "center"
+        }
+      >
         <h3>
-          {/* Caso tenha erro, não mostra o número de contatos */}
-          {hasError ? (
-            <></>
-          ) : (
+          {!hasError &&
+            contacts.length > 0 &&
             `${filteredContacts.length} contato${
               filteredContacts.length == 1 ? "" : "s"
-            }`
-          )}
+            }`}
         </h3>
         <Link to="/new">Novo Contato</Link>
       </Header>
-
       {hasError ? (
-        <Error retryFunction={handleRetry} />
+        <Error retryFunction={handleRetry} /> /* Erro na API */
       ) : (
         <>
-          {filteredContacts.length !== 0 && (
-            <ListHeader order={order}>
-              <button type="button" onClick={handleReorder}>
-                <span>Nome</span>
-                <img src={arrow} alt="arrow" />
-              </button>
-            </ListHeader>
+          {contacts.length === 0 && (
+            <NoContactsRegistered /> /* Nenhum contato cadastrado */
           )}
-
-          {filteredContacts.map((contact) => (
-            <Card key={contact.id}>
-              <div className="info">
-                <div className="contact-name">
-                  <strong>{contact.name}</strong>
-                  {contact.category_name && (
-                    <small>{contact.category_name}</small>
-                  )}
-                </div>
-                <span>{contact.email}</span>
-                <span>{contact.phone}</span>
-              </div>
-              <div className="actions">
-                <Link to={`/edit/${contact.id}`}>
-                  <img src={edit} alt="edit" />
-                </Link>
-                <button type="button">
-                  <img src={trash} alt="trash" />
-                </button>
-              </div>
-            </Card>
-          ))}
+          {contacts.length > 0 && filteredContacts.length === 0 && (
+            <>
+              <NoFilteredContactsFound filtro={searchTerm} />
+            </> /* Nenhum contato com esse filtro encontrado */
+          )}
         </>
       )}
+
+      <>
+        {filteredContacts.length !== 0 && (
+          <ListHeader order={order}>
+            <button type="button" onClick={handleReorder}>
+              <span>Nome</span>
+              <img src={arrow} alt="arrow" />
+            </button>
+          </ListHeader>
+        )}
+
+        {filteredContacts.map((contact) => (
+          <Card key={contact.id}>
+            <div className="info">
+              <div className="contact-name">
+                <strong>{contact.name}</strong>
+                {contact.category_name && (
+                  <small>{contact.category_name}</small>
+                )}
+              </div>
+              <span>{contact.email}</span>
+              <span>{contact.phone}</span>
+            </div>
+            <div className="actions">
+              <Link to={`/edit/${contact.id}`}>
+                <img src={edit} alt="edit" />
+              </Link>
+              <button type="button">
+                <img src={trash} alt="trash" />
+              </button>
+            </div>
+          </Card>
+        ))}
+      </>
     </Container>
   );
 }
