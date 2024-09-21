@@ -1,27 +1,28 @@
 @devUrl = http://localhost:3001
 @prodUrl = https://contacts-jttveestu-gelutzs-projects.vercel.app
 
-
-### Create categories
-POST {{devUrl}}/categories
-Content-Type: application/json
-
-{
-  "name": "Family"
-}
+################################################################################
+### Get all contacts
+GET {{prodUrl}}/contacts
 
 ### Create contacts
 POST {{devUrl}}/contacts
 Content-Type: application/json
-
 {
   "name": "John Doe",
   "email": "john@example.com",
   "phone": "123456789"
 }
 
+################################################################################
+
 ### Get all categories
 GET {{prodUrl}}/categories
 
-### Get all contacts
-GET {{prodUrl}}/contacts
+### Create categories
+POST {{devUrl}}/categories
+Content-Type: application/json
+{
+  "name": "Family"
+}
+
