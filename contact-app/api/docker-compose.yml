@@ -8,18 +8,29 @@ services:
       - POSTGRES_DB=${POSTGRES_DATABASE}
     volumes:
       - postgres:/var/lib/postgresql/data
-    ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     networks:
       - app
 
+  # api:
+  #   image: node:18-alpine
+  #   container_name: api
+  #   working_dir: /app
+  #   command: sh -c "npm install && npm run dev"
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - ${API_PORT}:${API_PORT}
+  #   networks:
+  #     - app
+  #   depends_on:
+  #     - contacts-db
+
   api:
-    image: node:18-alpine
-    container_name: api
-    working_dir: /app
-    command: sh -c "npm install && npm run dev"
+    build:
+      context: .
+    command: "bun start"
     volumes:
-      - .:/app
+      - ./src:/app/src
     ports:
       - ${API_PORT}:${API_PORT}
     networks:

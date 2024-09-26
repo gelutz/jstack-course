@@ -16,5 +16,8 @@ COPY . .
 
 # copy production dependencies and source code into final image
 FROM base AS release
+WORKDIR /app
 COPY --from=install /temp/dev/node_modules node_modules
 COPY --from=prerelease /usr/src/app/package.json .
+COPY --from=prerelease /usr/src/app/.env .
+# COPY --from=prerelease /usr/src/app/tsconfig.json . # apenas para projetos com typescript
