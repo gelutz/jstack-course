@@ -1,5 +1,5 @@
 FROM oven/bun:1 AS base
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # instalar as dependências num temp para ficar no cache das próximas builds
 FROM base AS install
@@ -10,14 +10,12 @@ RUN cd /temp/dev && bun install --frozen-lockfile
 # pega o node_modules do temp
 # e copia o resto dos arquivos necessários
 FROM base AS prerelease
-WORKDIR /usr/src/app
 COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
 
 # copy production dependencies and source code into final image
 FROM base AS release
-WORKDIR /app
 COPY --from=install /temp/dev/node_modules node_modules
-COPY --from=prerelease /usr/src/app/package.json .
-COPY --from=prerelease /usr/src/app/.env .
-# COPY --from=prerelease /usr/src/app/tsconfig.json . # apenas para projetos com typescript
+COPY --from=prerelease /app/package.json .
+COPY --from=prerelease /app/.env .
+# COPY --from=prerelease /app/tsconfig.json . # apenas para projetos com typescript
