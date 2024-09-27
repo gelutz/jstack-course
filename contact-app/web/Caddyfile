@@ -1,0 +1,9 @@
+# Serve the static site on port 80
+:80 {
+    # Serve the static index.html file
+    root * /usr/share/caddy
+    file_server
+
+    # Proxy API requests to the backend service (api)
+    # reverse_proxy /api/* api:3001
+}

@@ -5,7 +5,7 @@ import { isProduction } from "../utils/isProduction";
 class ContactService {
   constructor() {
     if (!isProduction()) {
-      this.api = new HttpClient("http://localhost:3001");
+      this.api = new HttpClient("http://api:3001");
     } else {
       this.api = new HttpClient("https://jstack-contacts-api.vercel.app");
     }
