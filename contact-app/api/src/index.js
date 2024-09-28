@@ -18,18 +18,22 @@ app.use((error, request, response, next) => {
 	return response.sendStatus(500);
 });
 
-connect().then(() => {
-	console.log("Database connected");
-	if (!isProduction()) {
-		migrate();
+connect()
+	.then(() => {
+		console.log("Database connected");
+		if (!isProduction()) {
+			migrate();
 
-		const port = process.env.API_PORT || 3001;
+			const port = process.env.API_PORT || 3001;
 
-		app.listen(port, () =>
-			console.log(`Server started http://localhost:${port}`)
-		);
-	}
-});
+			app.listen(port, () =>
+				console.log(`Server started http://localhost:${port}`)
+			);
+		}
+	})
+	.catch((error) => {
+		console.log(error);
+	});
 
 if (isProduction()) {
 	module.exports = app;

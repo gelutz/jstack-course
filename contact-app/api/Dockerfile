@@ -17,5 +17,8 @@ COPY . .
 FROM base AS release
 COPY --from=install /temp/dev/node_modules node_modules
 COPY --from=prerelease /app/package.json .
-COPY --from=prerelease /app/.env .
-# COPY --from=prerelease /app/tsconfig.json . # apenas para projetos com typescript
+COPY --from=prerelease /app/src src
+
+EXPOSE 3001
+
+CMD ["bun", "start"]

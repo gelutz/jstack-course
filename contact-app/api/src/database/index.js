@@ -14,6 +14,8 @@ module.exports = {
 			env.get("POSTGRES_DATABASE"),
 		]);
 
+		console.log(host, port, user, password, database);
+
 		client = new Client({
 			host,
 			port,

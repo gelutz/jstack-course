@@ -19,3 +19,5 @@ FROM caddy:alpine AS release
 WORKDIR /app
 COPY --from=prerelease /app/Caddyfile /etc/caddy/Caddyfile
 COPY --from=prerelease /app/dist /usr/share/caddy
+
+EXPOSE 80
