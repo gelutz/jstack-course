@@ -22,6 +22,12 @@ I'm documenting everything I learn on my public notion workspace, which can be a
 
     [MyContacts Live Demo](https://contacts-app.vercel.app/)
 
+    > **To-dos:**
+    >
+    > [ ] Fix deployments on Vercel after latest changes to docker-compose and Dockerfiles
+    > [ ] Web container keeps crashing after the first request
+    > [ ] Update README with new details about docker
+
 - **class-components**
   - This folder contains the code for the class components module. There's one class component with all lifecycle methods with a small explanation of each one.
 - **hooks (wip)**
