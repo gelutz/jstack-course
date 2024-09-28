@@ -36,7 +36,7 @@ const round = keyframes`
 
 export const StyledSpinner = styled.div`
   color: ${({ theme }) => theme.colors.primary.main};
-  font-size: 90px;
+  font-size: ${({ $size }) => $size}em;
   text-indent: -9999em;
   overflow: hidden;
   width: 1em;

@@ -1,8 +1,11 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { StyledSpinner } from "./styles";
 
-const Spinner = () => {
-  return <StyledSpinner></StyledSpinner>;
+export const Spinner = ({ size = 4 }) => {
+  return <StyledSpinner $size={size}></StyledSpinner>;
 };
 
-export default Spinner;
+Spinner.propTypes = {
+  size: PropTypes.number,
+};
