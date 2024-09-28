@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { isValidEmail, maskPhone } from "../../utils/validation";
 
 import { Button } from "../Button";
@@ -8,14 +8,32 @@ import { Input } from "../Input/styles";
 import InputContainer from "../Input";
 import PropTypes from "prop-types";
 import { Select } from "../Select";
+import { categoryService } from "../../services/CategoryService";
 import { useErrors } from "../../hooks/useErrors";
 
 const ContactForm = ({ buttonLabel = "Enviar" }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
-  const [socials, setSocials] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+
+  const [categories, setCategories] = useState([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+
   const { addError, getErrorMessage } = useErrors();
+
+  useEffect(() => {
+    setIsLoadingCategories(true);
+    categoryService
+      .fetchCategories()
+      .then((response) => {
+        if (response.length > 0) {
+          setCategories(response);
+          setIsLoadingCategories(false);
+        }
+      })
+      .catch(() => {}); // ignora o erro pq fodase se tiver ou não categoria
+  }, []);
 
   const validateForm = (data) => {
     if (data.get("name") === "") {
@@ -55,7 +73,7 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
         </InputContainer>
         <InputContainer error={getErrorMessage("email")}>
           <Input
-            placeholder="Email"
+            placeholder="Email *"
             type="email"
             name="email"
             value={email}
@@ -72,15 +90,22 @@ const ContactForm = ({ buttonLabel = "Enviar" }) => {
           />
         </InputContainer>
 
-        <InputContainer error={getErrorMessage("socials")}>
+        <InputContainer
+          error={getErrorMessage("categories")}
+          isLoading={isLoadingCategories}
+        >
           <Select
-            name="socials"
-            value={socials}
-            onChange={(e) => setSocials(e.target.value)}
+            disabled={isLoadingCategories}
+            name="categories"
+            value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
           >
-            <option value="facebook">Facebook</option>
-            <option value="instagram">Instagram</option>
-            <option value="whatsapp">Whatsapp</option>
+            <option value="0">Sem categoria</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
           </Select>
         </InputContainer>
         <Button type="submit">{buttonLabel}</Button>
