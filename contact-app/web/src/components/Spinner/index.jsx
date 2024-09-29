@@ -2,10 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import { StyledSpinner } from "./styles";
 
-export const Spinner = ({ size = 4 }) => {
+export const Spinner = ({ size }) => {
   return <StyledSpinner $size={size}></StyledSpinner>;
 };
 
 Spinner.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.number.isRequired,
+};
+
+Spinner.defaultProps = {
+  size: 1,
 };

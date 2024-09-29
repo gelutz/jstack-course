@@ -36,13 +36,10 @@ const round = keyframes`
 
 export const StyledSpinner = styled.div`
   color: ${({ theme }) => theme.colors.primary.main};
-  font-size: ${({ $size }) => $size}em;
-  text-indent: -9999em;
-  overflow: hidden;
+  font-size: ${({ $size }) => `${$size}em`};
   width: 1em;
   height: 1em;
   border-radius: 50%;
-  margin: 72px auto;
   position: relative;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
