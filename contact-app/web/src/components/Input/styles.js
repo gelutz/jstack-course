@@ -11,8 +11,8 @@ export const Container = styled.div`
 
   // essa variável precisa ter o $ para que o styled-components saiba que é uma variavel transiente
   ${({ $error }) =>
-    $error &&
-    css`
+		$error &&
+		css`
       input {
         border: 2px solid ${({ theme }) => theme.colors.danger.main};
       }
@@ -20,8 +20,8 @@ export const Container = styled.div`
 
   .form-item {
     ${({ isLoading }) =>
-      isLoading &&
-      css`
+			isLoading &&
+			css`
         opacity: 0.6;
         pointer-events: none; // desabilita a interação do input
 
