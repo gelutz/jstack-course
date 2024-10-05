@@ -53,7 +53,7 @@ export const ListHeader = styled.header`
   img {
     transition: transform 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     transform: ${({ order }) =>
-      order === "asc" ? "rotate(0deg)" : "rotate(180deg)"};
+			order === "asc" ? "rotate(0deg)" : "rotate(180deg)"};
 
     &:hover {
       cursor: pointer;

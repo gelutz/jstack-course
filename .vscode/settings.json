@@ -1,4 +1,9 @@
 {
-  "indentRainbow.ignoreErrorLanguages": ["javascript"],
-  "debug.inlineValues": "on"
+  "debug.inlineValues": "on",
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }

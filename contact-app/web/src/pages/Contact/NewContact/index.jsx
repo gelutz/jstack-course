@@ -1,15 +1,22 @@
 import ContactForm from "../../../components/ContactsForm";
 import PageHeader from "../../../components/PageHeader";
 import React from "react";
+import { contactService } from "../../../services/ContactService";
 
 const NewContact = () => {
-  return (
-    <>
-      <PageHeader titulo="Novo Contato" />
+	const createContact = async (contact) => {
+		await contactService.create(contact);
 
-      <ContactForm buttonLabel="Cadastrar" />
-    </>
-  );
+		window.location.href = "/";
+	};
+
+	return (
+		<>
+			<PageHeader titulo="Novo Contato" />
+
+			<ContactForm buttonLabel="Cadastrar" onSubmit={createContact} />
+		</>
+	);
 };
 
 export default NewContact;

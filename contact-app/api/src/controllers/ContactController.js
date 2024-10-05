@@ -1,4 +1,5 @@
 const ContactsRepository = require("../repositories/ContactsRepository");
+const { isValidUUID } = require("../utils/isValidUUID");
 
 class ContactController {
 	async index(request, response) {
@@ -11,6 +12,11 @@ class ContactController {
 	async show(request, response) {
 		// Obter UM registro
 		const { id } = request.params;
+
+		if (!isValidUUID(id)) {
+			return response.status(400).json({ error: "Invalid UUID" });
+		}
+
 		const contact = await ContactsRepository.findById(id);
 
 		if (!contact) {
@@ -22,14 +28,19 @@ class ContactController {
 
 	async store(request, response) {
 		// Criar novo registro
-		const { name, email, phone, category_id } = request.body;
+		const { name, email, phone, categoryId } = request.body;
 
-		if (!name) {
-			return response.status(400).json({ error: "Name is required" });
+		if (!name || !email) {
+			return response
+				.status(400)
+				.json({ error: "Name and E-mail are required" });
+		}
+
+		if (categoryId && !isValidUUID(categoryId)) {
+			return response.status(400).json({ error: "Invalid UUID" });
 		}
 
 		const contactExists = await ContactsRepository.findByEmail(email);
-
 		if (contactExists) {
 			return response
 				.status(400)
@@ -38,9 +49,10 @@ class ContactController {
 
 		const contact = await ContactsRepository.create({
 			name,
-			email,
+			email: email || null,
 			phone,
-			category_id,
+			category_id: categoryId || null,
+			// validações com o "|| null" não permitem tentar cadastrar com string vazia
 		});
 
 		response.json(contact);
@@ -49,7 +61,11 @@ class ContactController {
 	async update(request, response) {
 		// Editar um registro
 		const { id } = request.params;
-		const { name, email, phone, category_id } = request.body;
+		const { name, email, phone, categoryId } = request.body;
+
+		if (!isValidUUID(id) || (categoryId && !isValidUUID(categoryId))) {
+			return response.status(400).json({ error: "Invalid UUID" });
+		}
 
 		const contactExists = await ContactsRepository.findById(id);
 		if (!contactExists) {
@@ -61,7 +77,6 @@ class ContactController {
 		}
 
 		const contactByEmail = await ContactsRepository.findByEmail(email);
-
 		if (contactByEmail && contactByEmail.id !== id) {
 			return response
 				.status(400)
@@ -70,9 +85,9 @@ class ContactController {
 
 		const contact = await ContactsRepository.update(id, {
 			name,
-			email,
+			email: email || null,
 			phone,
-			category_id,
+			category_id: categoryId || null,
 		});
 
 		response.json(contact);

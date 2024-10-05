@@ -3,15 +3,15 @@ import PageHeader from "../../../components/PageHeader";
 import React from "react";
 
 const EditContact = () => {
-  return (
-    <>
-      <>
-        <PageHeader titulo="Editar contato"></PageHeader>
+	return (
+		<>
+			<>
+				<PageHeader titulo="Editar contato" />
 
-        <ContactForm buttonLabel="Salvar alterações" />
-      </>
-    </>
-  );
+				<ContactForm buttonLabel="Salvar alterações" />
+			</>
+		</>
+	);
 };
 
 export default EditContact;
