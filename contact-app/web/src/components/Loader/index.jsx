@@ -4,17 +4,17 @@ import ReactDOM from "react-dom";
 import { Spinner } from "../Spinner";
 import propTypes from "prop-types";
 
-export const Loader = ({ isLoading }) => {
-  if (!isLoading) return null;
+export const Loader = ({ isloading }) => {
+	if (!isloading) return null;
 
-  return ReactDOM.createPortal(
-    <Overlay>
-      <Spinner size={8} />
-    </Overlay>,
-    document.getElementById("loader-root")
-  );
+	return ReactDOM.createPortal(
+		<Overlay>
+			<Spinner size={8} />
+		</Overlay>,
+		document.getElementById("loader-root"),
+	);
 };
 
 Loader.propTypes = {
-  isLoading: propTypes.bool,
+	isloading: propTypes.bool,
 };

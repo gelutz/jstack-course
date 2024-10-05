@@ -19,6 +19,7 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 
 	const [categories, setCategories] = useState([]);
 	const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const { addError, getErrorMessage } = useErrors();
 
@@ -53,8 +54,9 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const formData = new FormData(event.target);
+		setIsSubmitting(true);
 
+		const formData = new FormData(event.target);
 		validateForm(formData);
 
 		onSubmit({
@@ -62,6 +64,8 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 			email: formData.get("email"),
 			telefone: maskPhone(formData.get("telefone")),
 			categoryId: formData.get("categories"),
+		}).finally(() => {
+			setIsSubmitting(false);
 		});
 	};
 
@@ -70,6 +74,7 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 			<FormGroup>
 				<InputContainer error={getErrorMessage("name")}>
 					<Input
+						disabled={isSubmitting}
 						placeholder="Nome *"
 						name="name"
 						value={name}
@@ -78,6 +83,7 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 				</InputContainer>
 				<InputContainer error={getErrorMessage("email")}>
 					<Input
+						disabled={isSubmitting}
 						placeholder="Email *"
 						type="email"
 						name="email"
@@ -87,6 +93,7 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 				</InputContainer>
 				<InputContainer error={getErrorMessage("telefone")}>
 					<Input
+						disabled={isSubmitting}
 						placeholder="+55 (99) 99999-9999 *"
 						name="telefone"
 						value={telefone}
@@ -97,10 +104,10 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 
 				<InputContainer
 					error={getErrorMessage("categories")}
-					isLoading={isLoadingCategories}
+					isloading={isLoadingCategories}
 				>
 					<Select
-						disabled={isLoadingCategories}
+						disabled={isLoadingCategories || isSubmitting}
 						name="categories"
 						value={categoryId}
 						onChange={(e) => setCategoryId(e.target.value)}
@@ -113,7 +120,9 @@ const ContactForm = ({ buttonLabel = "Enviar", onSubmit }) => {
 						))}
 					</Select>
 				</InputContainer>
-				<Button type="submit">{buttonLabel}</Button>
+				<Button disabled={isSubmitting} type="submit" isloading={isSubmitting}>
+					{buttonLabel}
+				</Button>
 			</FormGroup>
 		</Form>
 	);

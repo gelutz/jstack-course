@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Spinner } from "../Spinner";
 
-const InputContainer = ({ error, children, isLoading }) => {
+const InputContainer = ({ error, children, isloading }) => {
 	return (
-		<Container $error={error} isLoading={isLoading}>
+		<Container $error={error} $isloading={isloading}>
 			<div className="form-item">
 				{children}
-				{isLoading && (
+				{isloading && (
 					<div className="loader">
 						<Spinner size={1} />
 					</div>
@@ -22,11 +22,11 @@ const InputContainer = ({ error, children, isLoading }) => {
 InputContainer.propTypes = {
 	error: PropTypes.string,
 	children: PropTypes.node,
-	isLoading: PropTypes.bool,
+	isloading: PropTypes.bool,
 };
 
 InputContainer.defaultProps = {
-	isLoading: false,
+	isloading: false,
 };
 
 export default InputContainer;

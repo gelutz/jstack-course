@@ -19,8 +19,8 @@ export const Container = styled.div`
     `}
 
   .form-item {
-    ${({ isLoading }) =>
-			isLoading &&
+    ${({ $isloading }) =>
+			$isloading &&
 			css`
         opacity: 0.6;
         pointer-events: none; // desabilita a interação do input
