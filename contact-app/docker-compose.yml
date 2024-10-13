@@ -22,7 +22,7 @@ services:
     working_dir: /app
     volumes:
       - ./api:/app
-      - api_node_modules:/app/node_modules
+      - node_modules:/app/node_modules
     ports:
       - 3001:3001
     networks:
@@ -37,7 +37,7 @@ services:
     working_dir: /app
     volumes:
       - ./web:/app
-      - web_node_modules:/app/node_modules
+      - node_modules:/app/node_modules
     ports:
       - 3000:3000
     networks:
@@ -51,5 +51,4 @@ networks:
 
 volumes:
   postgres:
-  api_node_modules:
-  web_node_modules:
+  node_modules:
