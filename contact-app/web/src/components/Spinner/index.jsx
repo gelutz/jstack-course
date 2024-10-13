@@ -3,13 +3,13 @@ import React from "react";
 import { StyledSpinner } from "./styles";
 
 export const Spinner = ({ size }) => {
-  return <StyledSpinner $size={size}></StyledSpinner>;
+	return <StyledSpinner $size={size} />;
 };
 
 Spinner.propTypes = {
-  size: PropTypes.number.isRequired,
+	size: PropTypes.number.isRequired,
 };
 
 Spinner.defaultProps = {
-  size: 1,
+	size: 1,
 };
