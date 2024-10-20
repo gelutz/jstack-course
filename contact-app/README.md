@@ -16,6 +16,9 @@
 ## Description 📝
 
 Simple CRUD App that allows you to list, create, edit and delete contacts. Created during the JStack course in order to learn more about React and Styled Components.
+The app is separated into two services, a backend and a frontend. The backend is a simple express server that connects to a postgres database, and the frontend is a basic React App that covers the basics of React.
+Both services are deployed separately on Vercel, and can be run locally with the docker-compose file found in the `contacts-app` folder.
+Both node services are configured as multi-stage builds (located at the corresponding folder) to reduce the size of the final image.
 
 <div align="center">
   <h3> Tech stack 🛠️ </h3>
@@ -32,41 +35,23 @@ Simple CRUD App that allows you to list, create, edit and delete contacts. Creat
 
 ## Installation 💻
 
-> Classic installation for any react project (swap bun with npm if needed)
+> You either need docker or node installed to run
 
 1. Clone the repo
-2. Install dependencies
-3. Run the app
-4. Build the app
 
 ```bash
 git clone https://github.com/gelutz/jstack-course
 cd jstack-course/contact-app
 ```
 
-### Backend
-
-The backend can be run locally with docker or on Vercel.
-Docker runs two containers, one for the postgres database and one for the api server.
-You first need to create a `.env` file in the `api` folder and add the necessary variables.
+2. Start docker containers
+   > To run the backend service, create a `.env` file in the `api` folder with the variables from the `.env.example` file.
 
 ```bash
-# from ~/jstack-course/contact-app
-cd api
-
 docker compose up -d
 ```
 
-### Frontend
-
-> run the app
-
-```bash
-# from ~/jstack-course/contact-app
-cd web
-bun install
-bun dev
-```
+## Details about Docker
 
 ## Live Demo 🎥
 
